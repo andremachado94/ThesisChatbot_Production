@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="BotTemplate.WebApiApplication" Language="C#" %>
+<%@ Application CodeBehind="Global.asax.cs" Inherits="SimpleEchoBot.WebApiApplication" Language="C#" %>
