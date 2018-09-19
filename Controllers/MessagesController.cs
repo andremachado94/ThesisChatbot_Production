@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Diagnostics;
 using System.Linq;
 
+using LuisBot.Messages;
+
 namespace Microsoft.Bot.Sample.LuisBot
 {
     [BotAuthentication]
@@ -53,7 +55,7 @@ namespace Microsoft.Bot.Sample.LuisBot
                     // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
                     // Not available in all channels
                     ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
-                    Activity reply = message.CreateReply("Bom dia!");
+                    Activity reply = message.CreateReply(IntroductionMessages.GenerateIntroductionMessage(1));
                     connector.Conversations.ReplyToActivityAsync(reply);
                     message.Type = ActivityTypes.Message;
                 }
