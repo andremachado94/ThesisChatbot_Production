@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Threading.Tasks;
-using LuisBot;
+using LuisBot.Cards;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
+using Microsoft.Bot.Connector;
 
 namespace Microsoft.Bot.Sample.LuisBot
 {
@@ -39,7 +41,15 @@ namespace Microsoft.Bot.Sample.LuisBot
         [LuisIntent("SymptomDescription")]
         public async Task HelpIntent(IDialogContext context, LuisResult result)
         {
-            await this.ShowLuisResult(context, result);
+            var resultMessage = context.MakeMessage();
+            resultMessage.AttachmentLayout = AttachmentLayoutTypes.Carousel;
+            resultMessage.Attachments = new List<Attachment>();
+
+            resultMessage.Attachments.Add(ConfirmationCard.GetConfirmationCard("Algo", "mais?").ToAttachment());
+
+            await context.PostAsync(resultMessage);
+            context.Wait(MessageReceived);
+            //await this.ShowLuisResult(context, result);
         }
 
         private async Task ShowLuisResult(IDialogContext context, LuisResult result) 
@@ -47,5 +57,7 @@ namespace Microsoft.Bot.Sample.LuisBot
             await context.PostAsync($"You have reached {result.Intents[0].Intent}. You said: {result.Query}");
             context.Wait(MessageReceived);
         }
+
+
     }
 }
