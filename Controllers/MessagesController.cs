@@ -7,6 +7,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using System.Web.Http.Description;
 using System.Net.Http;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Microsoft.Bot.Sample.LuisBot
 {
@@ -45,6 +46,17 @@ namespace Microsoft.Bot.Sample.LuisBot
                 // Handle conversation state changes, like members being added and removed
                 // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
                 // Not available in all channels
+
+                if (message.MembersAdded.Any(o => o.Id == message.Recipient.Id))
+                {
+                    // Handle conversation state changes, like members being added and removed
+                    // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
+                    // Not available in all channels
+                    ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
+                    Activity reply = message.CreateReply("Bom dia!");
+                    connector.Conversations.ReplyToActivityAsync(reply);
+                    message.Type = ActivityTypes.Message;
+                }
             }
             else if (message.Type == ActivityTypes.ContactRelationUpdate)
             {
