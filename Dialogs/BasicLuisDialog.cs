@@ -42,6 +42,19 @@ namespace Microsoft.Bot.Sample.LuisBot
         public async Task HelpIntent(IDialogContext context, LuisResult result)
         {
 
+            string res = "";
+
+            foreach(EntityRecommendation entity in result.Entities){
+                res += "\n" + entity.Entity;
+                res += "\n\tRole: " + entity.Role;
+                res += "\n\tType: " + entity.Type;
+                res += "\n\tScore: " + entity.Score;
+                if(entity.Resolution != null){
+                    res += "\n\tResolution:" + entity.Type;
+                    res += "\n\t\tString: " + entity.Resolution.ToString();
+                }
+            }
+
             await context.PostAsync($"{result.Entities}Mais algum sintoma? Caso sinta algo mais por favor refira o que é :)");
 
             context.Wait(MessageReceived);
