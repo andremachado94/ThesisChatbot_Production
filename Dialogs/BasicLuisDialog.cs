@@ -42,7 +42,8 @@ namespace Microsoft.Bot.Sample.LuisBot
         public async Task HelpIntent(IDialogContext context, LuisResult result)
         {
 
-            await context.PostAsync($"Mais algum sintoma? Caso sinta algo mais por favor refira o que é :)");
+            await context.PostAsync($"{result.Entities}Mais algum sintoma? Caso sinta algo mais por favor refira o que é :)");
+
             context.Wait(MessageReceived);
 
             /*
