@@ -1,15 +1,16 @@
 ﻿<Properties StartupConfiguration="{9C7E3A46-B60F-4052-9A21-DC8D1A942216}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cards/ConfirmationCard.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Data/Cliente.cs">
     <Files>
       <File FileName="App_Start/WebApiConfig.cs" Line="25" Column="50" />
       <File FileName="Controllers/MessagesController.cs" Line="63" Column="74" />
-      <File FileName="Dialogs/BasicLuisDialog.cs" Line="51" Column="9" />
-      <File FileName="AppSettings.cs" Line="1" Column="1" />
-      <File FileName="Web.config" Line="1" Column="1" />
-      <File FileName="Global.asax.cs" Line="41" Column="10" />
+      <File FileName="Dialogs/BasicLuisDialog.cs" Line="64" Column="44" />
+      <File FileName="AppSettings.cs" Line="15" Column="48" />
+      <File FileName="Web.config" Line="30" Column="15" />
+      <File FileName="Global.asax.cs" Line="44" Column="25" />
       <File FileName="Properties/AssemblyInfo.cs" Line="1" Column="1" />
       <File FileName="Messages/IntroductionMessages.cs" Line="20" Column="16" />
-      <File FileName="Cards/ConfirmationCard.cs" Line="6" Column="8" />
+      <File FileName="Cards/ConfirmationCard.cs" Line="22" Column="41" />
+      <File FileName="Data/Cliente.cs" Line="8" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

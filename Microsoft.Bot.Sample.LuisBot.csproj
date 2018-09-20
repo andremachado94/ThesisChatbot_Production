@@ -181,6 +181,7 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="Messages\IntroductionMessages.cs" />
     <Compile Include="Cards\ConfirmationCard.cs" />
+    <Compile Include="Data\Client.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -194,6 +195,7 @@
   <ItemGroup>
     <Folder Include="Messages\" />
     <Folder Include="Cards\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

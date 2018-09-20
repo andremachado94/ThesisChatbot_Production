@@ -8,6 +8,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Connector;
+using LuisBot.Data;
 
 namespace Microsoft.Bot.Sample.LuisBot
 {
@@ -43,6 +44,9 @@ namespace Microsoft.Bot.Sample.LuisBot
         {
             string res = "";
 
+            string firstName = Client.GetClientFirstName(context);
+
+            await context.PostAsync($"Name: {firstName}");
 
             foreach (EntityRecommendation entity in result.Entities)
             {
@@ -54,14 +58,23 @@ namespace Microsoft.Bot.Sample.LuisBot
                 {
                     res += "\n\tResolution: ";
                     if (entity.Resolution.ContainsKey("values"))
-                        res += ((List<object>)entity.Resolution["values"]).Cast<string>().FirstOrDefault();
+                    {
+                        string resolution = ((List<object>)entity.Resolution["values"]).Cast<string>().FirstOrDefault();
+                        res += resolution;
+
+                        if(resolution.Equals("MaleFirstName") || resolution.Equals("FemaleFirstName")){
+                            Client.SetClientFirstName(context, entity.Entity);
+                        }
+                    }
 
                     else
                         res += "Not found";
                 }
             }
 
-            await context.PostAsync($"{res}");
+            firstName = Client.GetClientFirstName(context);
+
+            await context.PostAsync($"Olá {firstName}!");
 
             context.Wait(MessageReceived);
         }
