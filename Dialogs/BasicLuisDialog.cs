@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
 using LuisBot.Cards;
 using Microsoft.Bot.Builder.Dialogs;
@@ -51,8 +52,8 @@ namespace Microsoft.Bot.Sample.LuisBot
                 if(entity.Resolution != null){
                     res += "\n\tResolution: ";
                     if (entity.Resolution.ContainsKey("values"))
-                        foreach (var _value in entity.Resolution.Values)
-                            res += _value.ToString() + "  ";
+                        res += ((List<object>)entity.Resolution["values"]).Cast<string>().FirstOrDefault();
+
                     else
                         res +="Not found";
                 }
