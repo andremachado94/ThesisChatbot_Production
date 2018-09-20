@@ -45,13 +45,15 @@ namespace Microsoft.Bot.Sample.LuisBot
             string res = "";
 
             foreach(EntityRecommendation entity in result.Entities){
-                res += "\n" + entity.Entity;
-                res += "\n\tRole: " + entity.Role;
+                res += "\n\nEntity: " + entity.Entity;
                 res += "\n\tType: " + entity.Type;
                 res += "\n\tScore: " + entity.Score;
                 if(entity.Resolution != null){
-                    res += "\n\tResolution:" + entity.Type;
-                    res += "\n\t\tString: " + entity.Resolution.ToString();
+                    res += "\n\tResolution: ";
+                    if(entity.Resolution.ContainsKey("values"))
+                        res += entity.Resolution["values"];
+                    else
+                        res +="Not found";
                 }
             }
 
