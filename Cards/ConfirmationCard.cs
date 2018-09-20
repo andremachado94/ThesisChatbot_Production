@@ -6,19 +6,17 @@ namespace LuisBot.Cards
 {
     public static class ConfirmationCard
     {
-        public static HeroCard GetConfirmationCard(string title, string subtitle){
+        public static HeroCard GetConfirmationCard(string text){
 
             HeroCard heroCard = new HeroCard()
             {
-                Text = "Algo mais? :)",
-                Title = title != null ? title : null,
-                Subtitle = subtitle != null ? subtitle : null,
+                Text = text,
                 Buttons = new List<CardAction>()
                     {
                         new CardAction()
                         {
                             Title = "Sim",
-                            Type = ActionTypes.MessageBack,
+                            Type = ActionTypes.Call,
                             Value = 1
                         },
                         new CardAction()

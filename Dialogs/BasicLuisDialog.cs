@@ -45,7 +45,7 @@ namespace Microsoft.Bot.Sample.LuisBot
             resultMessage.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             resultMessage.Attachments = new List<Attachment>();
 
-            resultMessage.Attachments.Add(ConfirmationCard.GetConfirmationCard("Algo", "mais?").ToAttachment());
+            resultMessage.Attachments.Add(ConfirmationCard.GetConfirmationCard("Algo mais?").ToAttachment());
 
             await context.PostAsync(resultMessage);
             context.Wait(MessageReceived);
