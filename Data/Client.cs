@@ -13,7 +13,8 @@ namespace LuisBot.Data
 
         public static string GetClientFirstName(IDialogContext context)
         {
-            context.UserData.TryGetValue("ClientFirstName", out string name);
+            string name;
+            context.UserData.TryGetValue("ClientFirstName", out name);
             return name;
         }
 
