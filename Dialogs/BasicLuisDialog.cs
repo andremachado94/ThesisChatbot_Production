@@ -55,7 +55,7 @@ namespace Microsoft.Bot.Sample.LuisBot
                 }
             }
 
-            await context.PostAsync($"{result.Entities}Mais algum sintoma? Caso sinta algo mais por favor refira o que é :)");
+            await context.PostAsync($"{res}\n\nMais algum sintoma? Caso sinta algo mais por favor refira o que é :)");
 
             context.Wait(MessageReceived);
 
