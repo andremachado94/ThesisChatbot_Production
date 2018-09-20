@@ -51,7 +51,7 @@ namespace Microsoft.Bot.Sample.LuisBot
                 if(entity.Resolution != null){
                     res += "\n\tResolution: ";
                     if(entity.Resolution.ContainsKey("values"))
-                        res += entity.Resolution["values"];
+                        res += entity.Resolution.Values;
                     else
                         res +="Not found";
                 }
