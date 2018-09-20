@@ -38,18 +38,48 @@ namespace Microsoft.Bot.Sample.LuisBot
             await this.ShowLuisResult(context, result);
         }
 
+        [LuisIntent("ProvidePersonalInformation")]
+        public async Task ProvidePersonalInformationIntent(IDialogContext context, LuisResult result)
+        {
+            string res = "";
+
+
+            foreach (EntityRecommendation entity in result.Entities)
+            {
+                res += "\n\nEntity: " + entity.Entity;
+                res += "\n\tType: " + entity.Type;
+                if (entity.Resolution == null)
+                    res += "\n\tScore: " + entity.Score;
+                else
+                {
+                    res += "\n\tResolution: ";
+                    if (entity.Resolution.ContainsKey("values"))
+                        res += ((List<object>)entity.Resolution["values"]).Cast<string>().FirstOrDefault();
+
+                    else
+                        res += "Not found";
+                }
+            }
+
+            await context.PostAsync($"{res}");
+
+            context.Wait(MessageReceived);
+        }
+
 
         [LuisIntent("SymptomDescription")]
         public async Task HelpIntent(IDialogContext context, LuisResult result)
         {
-
+            
             string res = "";
+
 
             foreach(EntityRecommendation entity in result.Entities){
                 res += "\n\nEntity: " + entity.Entity;
                 res += "\n\tType: " + entity.Type;
-                res += "\n\tScore: " + entity.Score;
-                if(entity.Resolution != null){
+                if (entity.Resolution == null)
+                    res += "\n\tScore: " + entity.Score;
+                else{
                     res += "\n\tResolution: ";
                     if (entity.Resolution.ContainsKey("values"))
                         res += ((List<object>)entity.Resolution["values"]).Cast<string>().FirstOrDefault();
