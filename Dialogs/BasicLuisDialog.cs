@@ -50,8 +50,9 @@ namespace Microsoft.Bot.Sample.LuisBot
                 res += "\n\tScore: " + entity.Score;
                 if(entity.Resolution != null){
                     res += "\n\tResolution: ";
-                    if(entity.Resolution.ContainsKey("values"))
-                        res += entity.Resolution.Values;
+                    if (entity.Resolution.ContainsKey("values"))
+                        foreach (var _value in entity.Resolution.Values)
+                            res += _value.ToString() + "  ";
                     else
                         res +="Not found";
                 }
