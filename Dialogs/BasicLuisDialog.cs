@@ -41,6 +41,11 @@ namespace Microsoft.Bot.Sample.LuisBot
         [LuisIntent("SymptomDescription")]
         public async Task HelpIntent(IDialogContext context, LuisResult result)
         {
+
+            await context.PostAsync($"Mais algum sintoma? Caso sinta algo mais por favor refira o que é :)");
+            context.Wait(MessageReceived);
+
+            /*
             var resultMessage = context.MakeMessage();
             resultMessage.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             resultMessage.Attachments = new List<Attachment>();
@@ -49,7 +54,7 @@ namespace Microsoft.Bot.Sample.LuisBot
 
             await context.PostAsync(resultMessage);
             context.Wait(MessageReceived);
-            //await this.ShowLuisResult(context, result);
+            */
         }
 
         private async Task ShowLuisResult(IDialogContext context, LuisResult result) 
